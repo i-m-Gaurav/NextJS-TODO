@@ -29,18 +29,20 @@ const TodoLists = () => {
   }, [topics]);
 
   return (
-    <div className='grid grid-cols-1 gap-4 '>
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
       {topics.map((t) => (
-        <div key={t.id} className='p-4 border border-slate-300 flex justify-between gap-5 items-start'>
-          <div className='w-96'> {/* Adjust width using w-3/4 class */}
-            <h2 className='font-bold text-2xl'>{t.title}</h2>
-            <div>{t.description}</div>
+        <div key={t.id} className='p-4 border border-slate-300 flex flex-col justify-between gap-5 items-start'>
+          <div className='w-full mb-4'>
+            <h2 className='font-bold text-xl md:text-2xl'>{t.title}</h2>
+            <div className='mt-2'>{t.description}</div>
           </div>
-          <div className='flex gap-2'>
+          <div className='flex items-center justify-between'>
+            <div>
+              <Link href={`${process.env.NEXT_PUBLIC_HOST}/editTopic/${t._id}`}>
+                <HiPencilAlt size={24} />
+              </Link>
+            </div>
             <RemoveBtn id={t._id} />
-            <Link href={`${process.env.NEXT_PUBLIC_HOST}/editTopic/${t._id}`}>
-              <HiPencilAlt size={24} />
-            </Link>
           </div>
         </div>
       ))}
