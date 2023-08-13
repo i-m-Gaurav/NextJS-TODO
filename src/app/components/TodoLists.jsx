@@ -2,10 +2,12 @@
 import Link from 'next/link'
 import React,{useState,useEffect} from 'react'
 import {HiPencilAlt} from 'react-icons/hi'
+import { useRouter } from 'next/navigation'
 import RemoveBtn from './RemoveBtn'
 
 const TodoLists = () => {
-  const [topics, setTopics] = useState([]);
+  const [topics, setTopics] = useState([]);\
+  const router = useRouter();
 
   useEffect(() => {
     const fetchTopics = async () => {
@@ -18,6 +20,9 @@ const TodoLists = () => {
         }
         const data = await res.json();
         setTopics(data.topics);
+        if(res.ok){
+          router.refresh();
+        }
       } catch (error) {
         console.log('Error loading topics', error);
       }
