@@ -16,6 +16,7 @@ const RemoveBtn = ({id}) => {
             if(res.ok){
                 router.refresh();
             }
+
         }
         
     };

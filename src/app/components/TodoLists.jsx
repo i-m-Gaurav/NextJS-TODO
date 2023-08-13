@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import RemoveBtn from './RemoveBtn'
 
 const TodoLists = () => {
-  const [topics, setTopics] = useState([]);\
+  const [topics, setTopics] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -20,16 +20,13 @@ const TodoLists = () => {
         }
         const data = await res.json();
         setTopics(data.topics);
-        if(res.ok){
-          router.refresh();
-        }
       } catch (error) {
         console.log('Error loading topics', error);
       }
     };
 
     fetchTopics();
-  }, []);
+  }, [topics]);
 
   return (
     <div className='grid grid-cols-1 gap-4 '>
