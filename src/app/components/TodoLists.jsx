@@ -6,7 +6,7 @@ import RemoveBtn from './RemoveBtn'
 
 const getTopics = async()=>{
     try {
-        const res = await fetch('http://localhost:3000/api/topics',{
+        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/topics`,{
             cache: "no-store",
         });
         if(!res.ok){
@@ -31,7 +31,7 @@ const TodoLists = async() => {
               </div>
               <div className='flex gap-2'>
                 <RemoveBtn id={t._id} />
-                <Link href={`/editTopic/${t._id}`}>
+                <Link href={`${process.env.NEXT_PUBLIC_HOST}/editTopic/${t._id}`}>
                   
                     <HiPencilAlt size={24} />
                   
